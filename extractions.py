@@ -7,7 +7,9 @@ from tempfile import NamedTemporaryFile as Ntf
 import shutil
 import json
 
-
+# finds values associated with the given document name
+# paramenter is a string with the document name
+# returns a dictionary of all the fields related to that document
 def find_values(document):
     elements_map = csv.DictReader(open('./extractions/data-elements.csv'))
     result = []
@@ -16,7 +18,9 @@ def find_values(document):
             result.append(row)
     return result
 
-
+# sorts the list of elements given by find_values, first divinding them into groups and then sorting within those groups
+# parameter is the dictionary produced by find_values 
+# returns a dictionary of lists of strings, keyed by group number
 def group_sort(elements):
     result = {}
     temp = {}
@@ -36,7 +40,10 @@ def group_sort(elements):
 def read(document):
     return group_sort(find_values(document))
 
-
+# allows for data elements to be moved around their document
+# parameters are the element in question, the new group and order to give it
+# if no values are given for either, it will use the existing value of the data element
+# has no return, but edits the csv
 def exchange(data_element, new_group=-1, new_order=-1):
     if new_group == -1:
         new_group = data_element['Group Number']
@@ -58,7 +65,9 @@ def exchange(data_element, new_group=-1, new_order=-1):
     temp.close()
     csvFile.close()
 
-
+# exports a list of all field names
+# takes no parameters
+# has no returns, but writes a new csv
 def exports():
     # field_names = []
     document_map = json.load(open('./documents-file-map.json'))
@@ -73,7 +82,9 @@ def exports():
             writer.writerow(row)
         file.close()
 
-
+# exports all the fields in a single document in order
+# parameter is a string that is the name of the document requested
+# has no return, but writes a new text document
 def export_list(document):
     result = read(document)
     with open('./exports/extraction fields export.txt', 'w') as file:
