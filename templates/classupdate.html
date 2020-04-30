@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<!-- Zac Capell
+Heavywater Front End Engineer Test
+4/29/20 -->
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<form action="/api/classifications/update" method="get">
+    <select name="client">
+        <option value="Black Knight">Black Knight</option>
+        <option value="Google">Google</option>
+        <option value="Heavywater">Heavywater</option>
+        <option value="Yahoo">Yahoo</option>
+        <option value="We Bank">We Bank</option>
+    </select><br>
+    <select name="doc_type">
+        <option value="Appraisal Report">Appraisal Report</option>
+        <option value="Automated Underwriting Feedback - DU Codified Findings">Automated Underwriting Feedback - DU Codified Findings</option>
+        <option value="Closing Disclosure">Closing Disclosure</option>
+        <option value="Credit Report">Credit Report</option>
+        <option value="Security Intrument Rider - ARM">Security Intrument Rider - ARM</option>
+        <option value="Pay Stub">Pay Stub</option>
+        <option value="W2">W2</option>
+    </select>
+    <br>
+    <label for="new_value">New Value</label><br>
+    <input type="text" id="new_value" name="new_value">
+    <input type = "submit" value = "Submit">
+</form>
+</body>
+</html>

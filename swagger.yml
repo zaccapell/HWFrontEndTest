@@ -1,0 +1,108 @@
+swagger: "2.0"
+info:
+  description: api for use in black knight heavywater front end engineer test
+  version: "1.0"
+  title: Document API
+consumes:
+  - application/json
+produces:
+  - application/json
+
+basePath: "/api"
+
+paths:
+  /classifications/read:
+    get:
+      operationId: "classifications.read_all"
+      tags:
+        - "Classification"
+      description: "reads all documents asked for from all given clients"
+      parameters:
+        - name: "clients"
+          in: query
+          required: True
+          description: "the list of clients documents should be retrieved from"
+          type: "array"
+          items:
+            type: "string"
+        - name: "documents"
+          in: query
+          required: True
+          description: "the list of documents that should be retrieved"
+          type: "array"
+          items:
+            type: "string"
+      responses:
+        200:
+          description: "successfully retrieved documents"
+          schema:
+            items:
+              properties:
+                result:
+                  type: "string"
+
+  /classifications/update:
+    get:
+      operationId: "classifications.update"
+      tags:
+        - "Classification"
+      description: "updates the given document type for the given client with the given value"
+      parameters:
+        - name: "client"
+          in: query
+          required: True
+          description: "the client whose document should be updated"
+          type: "string"
+        - name: "doc_type"
+          in: query
+          required: True
+          description: "the document type to be updated"
+          type: "string"
+        - name: "new_value"
+          in: query
+          required: True
+          description: "The new value for the document"
+          type: "string"
+      responses:
+        200:
+          description: "successfully edited document"
+  /extractions/read:
+    get:
+      operationId: "extractions.read"
+      tags:
+        - "Extraction"
+      description: "reads the sorted list of fields for the given document"
+      parameters:
+        - name: "document"
+          in: query
+          required: True
+          description: "the document to retrieve the fields from"
+          type: "string"
+      responses:
+        200:
+          description: "successful get"
+          schema:
+            items:
+              properties:
+                result:
+                  type: "string"
+  /extractions/update:
+    get:
+      operationId: "extractions.exchange"
+      tags:
+        - "Extraction"
+      description: "reads the sorted list of fields for the given document"
+      parameters:
+        - name: "document"
+          in: query
+          required: True
+          description: "the document to retrieve the fields from"
+          type: "string"
+      responses:
+        200:
+          description: "successful get"
+          schema:
+            items:
+              properties:
+                result:
+                  type: "string"
